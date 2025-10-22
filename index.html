@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookverse - Читалка книг онлайн</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.26.0",
+        "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.4"
+      }
+    }
+    </script>
+    <style>
+      :root {
+        --background: #fcf8f2; /* A tiny bit lighter warm beige */
+        --foreground: #753313; /* User-specified dark brown */
+        --card: #f8f2e9; /* Slightly darker beige for cards, matching background lightness */
+        --card-foreground: #753313;
+        --popover: #f8f2e9;
+        --popover-foreground: #753313;
+        --primary: #8d7366; /* A solid but not too dark brown for actions */
+        --primary-foreground: #fcf8f2;
+        --secondary: #a1887f; /* Muted Brown for secondary elements */
+        --secondary-foreground: #fcf8f2; /* Match new background */
+        --muted: #d7ccc8; /* Light brownish gray for muted elements */
+        --muted-foreground: #8D6E63; /* Lighter brown for muted text */
+        --accent: #b58900; /* Gold/yellow - pairs well with brown */
+        --accent-foreground: #fdf6e3;
+        --destructive: #dc322f; /* red */
+        --destructive-foreground: #fdf6e3;
+        --border: #d7ccc8;
+        --input: #d7ccc8;
+        --ring: #8d7366; /* Match primary color */
+      }
+      .dark {
+        --background: #261f1c; /* Very dark warm gray/brown */
+        --foreground: #d7ccc8; /* Lighter, warmer beige text */
+        --card: #3a322f; /* Darker brown for cards */
+        --card-foreground: #d7ccc8;
+        --popover: #3a322f;
+        --popover-foreground: #d7ccc8;
+        --primary: #a1887f; /* Muted light brown for primary actions */
+        --primary-foreground: #1c1614;
+        --secondary: #8d6e63;
+        --secondary-foreground: #1c1614;
+        --muted: #514843;
+        --muted-foreground: #a39992; /* Muted light text */
+        --accent: #b58900;
+        --accent-foreground: #1c1614;
+        --destructive: #dc322f;
+        --destructive-foreground: #fdf6e3;
+        --border: #514843;
+        --input: #514843;
+        --ring: #a1887f; /* Match primary color */
+      }
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      main > .container {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              border: 'var(--border)',
+              input: 'var(--input)',
+              ring: 'var(--ring)',
+              background: 'var(--background)',
+              foreground: 'var(--foreground)',
+              primary: {
+                DEFAULT: 'var(--primary)',
+                foreground: 'var(--primary-foreground)',
+              },
+              secondary: {
+                DEFAULT: 'var(--secondary)',
+                foreground: 'var(--secondary-foreground)',
+              },
+              destructive: {
+                DEFAULT: 'var(--destructive)',
+                foreground: 'var(--destructive-foreground)',
+              },
+              muted: {
+                DEFAULT: 'var(--muted)',
+                foreground: 'var(--muted-foreground)',
+              },
+              accent: {
+                DEFAULT: 'var(--accent)',
+                foreground: 'var(--accent-foreground)',
+              },
+              popover: {
+                DEFAULT: 'var(--popover)',
+                foreground: 'var(--popover-foreground)',
+              },
+              card: {
+                DEFAULT: 'var(--card)',
+                foreground: 'var(--card-foreground)',
+              },
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
